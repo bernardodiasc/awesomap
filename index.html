@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Extract Exif and place the photo in the Map</title>
+  <script src="https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js"></script>
+  <link href="https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css" rel="stylesheet" />
+  <!-- <script src="mapbox-2.2.2.js"></script> -->
+  <!-- <link href="mapbox-2.2.2.css" rel="stylesheet" /> -->
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; padding: 0; }
+    .input { display: block; padding: 1em; height: 71px; border-bottom: 1px solid #ccc; }
+    #map { display: block; width: 100%; height: calc(100% - 71px); }
+    .popup { text-align: center; }
+    .popup img { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="input">
+    Choose a image file with Geolocation Exif tags:<br/>
+    <input id="file-input" type="file" />
+  </div>
+  <div id="map"></div>
+  <script src="bundle.js"></script>
+</body>
+</html>
