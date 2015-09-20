@@ -1,5 +1,5 @@
 /**
- * geoUtils - Geographic functions
+ * GeoUtils - Geographic functions
  */
 export default class GeoUtils {
 
