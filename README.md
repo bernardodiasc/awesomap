@@ -79,3 +79,4 @@ Map built with [MapBox](https://www.mapbox.com/).
   - Change boundary and zoom to fit all markers related to selected images
 - If the image have none EXIF tags:
   - The image will show in the list, to place in the map the marker button should be used
+- Allow multiple files to be inputed once

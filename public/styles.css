@@ -1,0 +1,94 @@
+/**
+ * General
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+
+/**
+ * Panels
+ */
+
+.panels {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  display: block;
+  position: absolute;
+}
+
+.panel.top {
+  width: 100%;
+  height: 80px;
+  top: 0;
+  left: 0;
+  padding: 1em;
+}
+
+.panel.left {
+  width: calc(100% - 300px);
+  height: calc(100% - 80px);
+  top: 80px;
+  left: 0;
+}
+
+.panel.right {
+  width: 300px;
+  height: calc(100% - 80px);
+  top: 80px;
+  right: 0;
+  padding: 1em;
+}
+
+
+/**
+ * Panel Left
+ */
+
+.panel.left #map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.panel.left .popup {
+  text-align: center;
+}
+
+.panel.left .popup img {
+  display: block;
+  width: 100%;
+}
+
+
+/**
+ * Panel Right
+ */
+
+.panel.right .input {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1em;
+}
