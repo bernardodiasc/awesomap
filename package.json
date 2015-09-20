@@ -4,12 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify app/index.js -o bundle.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babelify": "^6.3.0",
-    "exif-js": "^2.1.1"
+    "browserify": "^11.1.0",
+    "eslint": "^1.5.0",
+    "exif-js": "^2.1.1",
+    "watchify": "^3.4.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }

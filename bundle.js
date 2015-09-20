@@ -1,11 +1,74 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ * geoUtils - Geographic functions
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var GeoUtils = (function () {
+  function GeoUtils() {
+    _classCallCheck(this, GeoUtils);
+  }
+
+  _createClass(GeoUtils, null, [{
+    key: "parseDMS",
+
+    /**
+     * DMS - Degrees, Minutes, Seconds
+     */
+    value: function parseDMS(gpsLat, gpsLatRef, gpsLong, gpsLongRef) {
+      var lat = this.convertDMSToDD(gpsLat[0], gpsLat[1], gpsLat[2], gpsLatRef);
+      var lng = this.convertDMSToDD(gpsLong[0], gpsLong[1], gpsLong[2], gpsLongRef);
+
+      return { lat: lat, lng: lng };
+    }
+
+    /**
+     * DD - Decimal Degrees
+     */
+  }, {
+    key: "convertDMSToDD",
+    value: function convertDMSToDD(degrees, minutes, seconds, direction) {
+      var dd = degrees + minutes / 60 + seconds / (60 * 60);
+      dd = parseFloat(dd);
+
+      if (direction == "S" || direction == "W") {
+        dd *= -1;
+      }
+
+      return dd;
+    }
+  }]);
+
+  return GeoUtils;
+})();
+
+exports["default"] = GeoUtils;
+module.exports = exports["default"];
+
+},{}],2:[function(require,module,exports){
 'use strict';
 
-var EXIF = require('exif-js').EXIF;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _exifJs = require('exif-js');
+
+var _exifJs2 = _interopRequireDefault(_exifJs);
+
+var _GeoUtils = require('./GeoUtils');
+
+var _GeoUtils2 = _interopRequireDefault(_GeoUtils);
 
 document.getElementById("file-input").onchange = function (e) {
-  EXIF.getData(e.target.files[0], function () {
-    var _EXIF$getAllTags = EXIF.getAllTags(this);
+  _exifJs2['default'].getData(e.target.files[0], function () {
+    var _EXIF$getAllTags = _exifJs2['default'].getAllTags(this);
 
     var GPSLatitude = _EXIF$getAllTags.GPSLatitude;
     var GPSLatitudeRef = _EXIF$getAllTags.GPSLatitudeRef;
@@ -13,10 +76,10 @@ document.getElementById("file-input").onchange = function (e) {
     var GPSLongitudeRef = _EXIF$getAllTags.GPSLongitudeRef;
 
     if (GPSLatitude && GPSLatitudeRef && GPSLongitude && GPSLongitudeRef) {
-      var _parseDMS = parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
+      var _GeoUtils$parseDMS = _GeoUtils2['default'].parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
 
-      var lat = _parseDMS.lat;
-      var lng = _parseDMS.lng;
+      var lat = _GeoUtils$parseDMS.lat;
+      var lng = _GeoUtils$parseDMS.lng;
 
       var imgURL = readURL(e.target).then(function (response) {
         buildMap(response.target.result, lat, lng);
@@ -84,31 +147,7 @@ function readURL(input) {
   }
 }
 
-/**
- * DMS - Degrees, Minutes, Seconds
- */
-function parseDMS(gpsLat, gpsLatRef, gpsLong, gpsLongRef) {
-  var lat = convertDMSToDD(gpsLat[0], gpsLat[1], gpsLat[2], gpsLatRef);
-  var lng = convertDMSToDD(gpsLong[0], gpsLong[1], gpsLong[2], gpsLongRef);
-
-  return { lat: lat, lng: lng };
-}
-
-/**
- * DD - Decimal Degrees
- */
-function convertDMSToDD(degrees, minutes, seconds, direction) {
-  var dd = degrees + minutes / 60 + seconds / (60 * 60);
-  dd = parseFloat(dd);
-
-  if (direction == "S" || direction == "W") {
-    dd *= -1;
-  }
-
-  return dd;
-}
-
-},{"exif-js":2}],2:[function(require,module,exports){
+},{"./GeoUtils":1,"exif-js":3}],3:[function(require,module,exports){
 (function() {
 
     var debug = false;
@@ -915,4 +954,4 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 }.call(this));
 
 
-},{}]},{},[1]);
+},{}]},{},[2]);

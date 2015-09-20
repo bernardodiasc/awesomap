@@ -1,15 +1,13 @@
-var EXIF = require('exif-js').EXIF;
+import EXIF from 'exif-js';
+import GeoUtils from './GeoUtils';
 
 document.getElementById("file-input").onchange = function(e) {
   EXIF.getData(e.target.files[0], function() {
     var { GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef } = EXIF.getAllTags(this);
 
     if (GPSLatitude && GPSLatitudeRef && GPSLongitude && GPSLongitudeRef) {
-      var { lat, lng } = parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
-      var imgURL = readURL(e.target).then(function(response) {
-        buildMap(response.target.result, lat, lng)
-      });
-
+      var { lat, lng } = GeoUtils.parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
+      var imgURL = readURL(e.target).then(response => { buildMap(response.target.result, lat, lng) });
     } else {
       alert('No exif information found. Please check exif tags on that image or try another one.');
     }
@@ -71,28 +69,4 @@ function readURL(input) {
       reader.onload = resolve;
     });
   }
-}
-
-/**
- * DMS - Degrees, Minutes, Seconds
- */
-function parseDMS(gpsLat, gpsLatRef, gpsLong, gpsLongRef) {
-  var lat = convertDMSToDD(gpsLat[0], gpsLat[1], gpsLat[2], gpsLatRef);
-  var lng = convertDMSToDD(gpsLong[0], gpsLong[1], gpsLong[2], gpsLongRef);
-
-  return { lat, lng }
-}
-
-/**
- * DD - Decimal Degrees
- */
-function convertDMSToDD(degrees, minutes, seconds, direction) {
-  var dd = degrees + (minutes / 60) + (seconds / (60 * 60));
-  dd = parseFloat(dd);
-
-  if (direction == "S" || direction == "W") {
-    dd *= -1;
-  }
-
-  return dd;
 }
