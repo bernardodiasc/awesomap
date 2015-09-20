@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify app/index.js -o bundle.js"
+    "build": "jshint app/*.js & watchify app/index.js -do 'uglifyjs -cm > public/bundle.min.js'"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,8 @@
     "browserify": "^11.1.0",
     "eslint": "^1.5.0",
     "exif-js": "^2.1.1",
+    "jshint": "^2.8.0",
+    "uglifyjs": "^2.4.10",
     "watchify": "^3.4.0"
   },
   "browserify": {
