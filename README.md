@@ -5,6 +5,7 @@ This is a project for study purpose.
 ## App Features
 
 - Extract Exif Geolocation from image file, create a marker in that location and display the image in the popup
+  - If you don't have any device with GPS, use the images in `sample-images` folder for testing
 
 ## Instructions
 
@@ -51,6 +52,7 @@ Map built with [MapBox](https://www.mapbox.com/).
       - String address grabbed from MapBox API that matches the EXIF geo tag
     - Checked images are be highlighted
   - Left side panel for the map
+- Rotate image in css based on EXIF orientation tag
 
 ### Experience
 
