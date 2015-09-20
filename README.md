@@ -31,6 +31,8 @@ Map built with [MapBox](https://www.mapbox.com/).
 - [Replace callbacks with ES6 Generators](http://modernweb.com/2014/02/10/replacing-callbacks-with-es6-generators/)
 - React.js components
 - CSS Modules
+- Unit Tests
+- BDD Tests
 
 ### Interface
 
