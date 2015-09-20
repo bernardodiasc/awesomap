@@ -13,28 +13,32 @@ export default class File {
    */
   static onInputChange(elem) {
     if (elem.target.files.length === 0) {
-      Alert.showMsg("None file detected. Please try again.", "error");
+      Alert.showMsg("None file detected. Please try again.");
       return false;
     }
 
-    File.getData(elem, geoData => {
-      File.readURL(elem.target)
-        .then(response => { Map.placeMarker(response.target.result, geoData.lat, geoData.lng); });
-    });
+    for (let file of Array.from(elem.target.files)) {
+      File.getData(file, geoData => {
+        File.readURL(file)
+          .then(response => {
+            Map.placeMarker(response.target.result, geoData.lat, geoData.lng);
+          });
+      });
+    }
   }
 
   /**
    * Get Geo Data
    */
-  static getData(elem, callback) {
-    EXIF.getData(elem.target.files[0], function() {
+  static getData(file, callback) {
+    EXIF.getData(file, function() {
       let { GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef } = EXIF.getAllTags(this);
 
       if (GPSLatitude && GPSLatitudeRef && GPSLongitude && GPSLongitudeRef) {
         let { lat, lng } = GeoUtils.parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
         callback({ lat, lng });
       } else {
-        Alert.showMsg("None EXIF Geo tags found. Please check EXIF tags on that image is correct or try another one.", "error");
+        Alert.showMsg(`None EXIF Geo tags found in the file <strong>${file.name}</strong>.<br/>Please check EXIF tags on that image is correct or try another one.`, "error");
       }
     });
   }
@@ -42,9 +46,9 @@ export default class File {
   /**
    * Read image file
    */
-  static readURL(input) {
+  static readURL(file) {
     let reader = new FileReader();
-    reader.readAsDataURL(input.files[0]);
+    reader.readAsDataURL(file);
     return new Promise(resolve => { reader.onload = resolve; });
   }
 }

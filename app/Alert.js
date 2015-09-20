@@ -1,5 +1,10 @@
 /**
  * Alert - Handle alert messages
+ *
+ * To do:
+ * - append messages instead of replace
+ * - fade in and fade out
+ * - close button
  */
 export default class Alert {
 
@@ -7,7 +12,7 @@ export default class Alert {
    * Display alert message
    */
   static showMsg(msg, type) {
-    if (type === "log") {
+    if (!type) {
       console.log(msg);
     } else {
       let body = document.querySelectorAll("body")[0];

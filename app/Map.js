@@ -1,5 +1,10 @@
+import Alert from "./Alert";
+
 /**
  * Map - Map functions
+ *
+ * To do:
+ * - Fit boundary to all markers
  */
 export default class Map {
   constructor() {
@@ -50,7 +55,5 @@ export default class Map {
 
     // Add features to the map
     myLayer.setGeoJSON(geoJson);
-
-    this.map.setView([lat, lng], 15);
   }
 }

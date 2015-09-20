@@ -6,6 +6,7 @@ This is a project for study purpose.
 
 - Extract Exif Geolocation from image file, create a marker in that location and display the image in the popup
   - If you don't have any device with GPS, use the images in `sample-images` folder for testing
+- Select multiple files at once
 
 ## Instructions
 
@@ -79,4 +80,4 @@ Map built with [MapBox](https://www.mapbox.com/).
   - Change boundary and zoom to fit all markers related to selected images
 - If the image have none EXIF tags:
   - The image will show in the list, to place in the map the marker button should be used
-- Allow multiple files to be inputed once
+- Allow multiple files to be inputed once - **OK**
