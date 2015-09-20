@@ -25,6 +25,7 @@ Map built with [MapBox](https://www.mapbox.com/).
 - Modules
 - Classes
 - Promises
+- Iterators
 
 ## To Do
 
