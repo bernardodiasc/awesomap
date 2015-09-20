@@ -1,6 +1,7 @@
 import EXIF from "exif-js";
 import GeoUtils from "./GeoUtils";
 import Map from "./Map";
+import Alert from "./Alert";
 
 /**
  * File - Handle files
@@ -11,13 +12,14 @@ export default class File {
    * On Input Change
    */
   static onInputChange(elem) {
+    if (elem.target.files.length === 0) {
+      Alert.showMsg("None file detected. Please try again.", "error");
+      return false;
+    }
+
     File.getData(elem, geoData => {
-      if (geoData) {
-        File.readURL(elem.target)
-          .then(response => { Map.placeMarker(response.target.result, geoData.lat, geoData.lng); });
-      } else {
-        console.log("No exif information found. Please check exif tags on that image or try another one.");
-      }
+      File.readURL(elem.target)
+        .then(response => { Map.placeMarker(response.target.result, geoData.lat, geoData.lng); });
     });
   }
 
@@ -31,6 +33,8 @@ export default class File {
       if (GPSLatitude && GPSLatitudeRef && GPSLongitude && GPSLongitudeRef) {
         let { lat, lng } = GeoUtils.parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
         callback({ lat, lng });
+      } else {
+        Alert.showMsg("None EXIF Geo tags found. Please check EXIF tags on that image is correct or try another one.", "error");
       }
     });
   }
@@ -39,10 +43,8 @@ export default class File {
    * Read image file
    */
   static readURL(input) {
-    if (input.files && input.files[0]) {
-      let reader = new FileReader();
-      reader.readAsDataURL(input.files[0]);
-      return new Promise(resolve => { reader.onload = resolve; });
-    }
+    let reader = new FileReader();
+    reader.readAsDataURL(input.files[0]);
+    return new Promise(resolve => { reader.onload = resolve; });
   }
 }

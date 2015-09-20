@@ -25,6 +25,39 @@ p {
 
 
 /**
+ * Alert
+ */
+
+.alert {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.alert .message {
+  color: white;
+  opacity: 0.7;
+}
+
+.alert .info {
+  background: blue;
+}
+
+.alert .success {
+  background: green;
+}
+
+.alert .warning {
+  background: darkorange;
+}
+
+.alert .error {
+  background: red;
+}
+
+
+/**
  * Panels
  */
 
