@@ -1,10 +1,11 @@
 export default class DomUtils {
 
+
   static createElement (options) {
     let { container, content, tag, classList, timer, single } = options;
 
     if (!container) {
-      container = document.querySelectorAll("body")[0];
+      container = document.querySelectorAll('body')[0];
     }
     //console.log(container);
 
@@ -14,7 +15,7 @@ export default class DomUtils {
     }
 
     if (!tag) {
-      tag = "div";
+      tag = 'div';
     }
     element = document.createElement(tag);
 
@@ -24,11 +25,11 @@ export default class DomUtils {
 
     container.appendChild(element);
 
-    if (tag === "div" || tag === "p" || tag === "h1") {
+    if (tag === 'div' || tag === 'p' || tag === 'h1') {
       if (content) {
         element.innerHTML = content;
       }
-    } else if (tag === "img") {
+    } else if (tag === 'img') {
       element.src = content;
     }
 

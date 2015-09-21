@@ -20,7 +20,7 @@ export default class GeoUtils {
     let dd = degrees + (minutes / 60) + (seconds / (60 * 60));
     dd = parseFloat(dd);
 
-    if (direction === "S" || direction === "W") {
+    if (direction === 'S' || direction === 'W') {
       dd *= -1;
     }
 

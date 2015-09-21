@@ -1,6 +1,6 @@
 # Awesome Map
 
-This is a project for study purpose.
+This is a project for study purpose. And javascript code playground, experimentations are being doing in this repo, do not use for production before review the code.
 
 ## App Features (so far)
 

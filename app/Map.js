@@ -1,4 +1,4 @@
-import Alert from "./Alert";
+import Alert from './Alert';
 
 /**
  * Map - Map functions
@@ -15,8 +15,8 @@ export default class Map {
    * Build map with MapBox
    */
   static buildMap () {
-    L.mapbox.accessToken = "pk.eyJ1IjoiYmVybmFyZG9kaWFzYyIsImEiOiJlZGFiZmUwOTUzZGM5MWIwOTgwMDhmY2ZkMGJlMzQ1OCJ9.tR40g6DTOsTyi101mxSWJg";
-    this.map = L.mapbox.map("map", "mapbox.streets");
+    L.mapbox.accessToken = 'pk.eyJ1IjoiYmVybmFyZG9kaWFzYyIsImEiOiJlZGFiZmUwOTUzZGM5MWIwOTgwMDhmY2ZkMGJlMzQ1OCJ9.tR40g6DTOsTyi101mxSWJg';
+    this.map = L.mapbox.map('map', 'mapbox.streets');
   }
 
   /**
@@ -26,19 +26,19 @@ export default class Map {
     let myLayer = L.mapbox.featureLayer().addTo(this.map);
 
     let geoJson = [{
-      type: "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [lng, lat]
+      type: 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [lng, lat]
       },
-      "properties": {
-        "marker-color": "#3c4e5a",
-        "marker-size": "large",
-        "image": img
+      'properties': {
+        'marker-color': '#3c4e5a',
+        'marker-size': 'large',
+        'image': img
       }
     }];
 
-    myLayer.on("layeradd", e => {
+    myLayer.on('layeradd', e => {
       let marker = e.layer;
       let feature = marker.feature;
       let image = feature.properties.image;

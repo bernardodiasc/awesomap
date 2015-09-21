@@ -1,4 +1,4 @@
-import DomUtils from "./DomUtils";
+import DomUtils from './DomUtils';
 
 /**
  * Alert - Handle alert messages
@@ -19,8 +19,8 @@ export default class Alert {
     } else {
       DomUtils.createElement({
         content: `<div class="message ${type}">${msg}</div>`,
-        tag: "div",
-        classList: "alert",
+        tag: 'div',
+        classList: 'alert',
         timer: 10000
       });
     }
