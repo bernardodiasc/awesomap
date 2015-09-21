@@ -14,7 +14,7 @@ export default class Map {
   /**
    * Build map with MapBox
    */
-  static buildMap() {
+  static buildMap () {
     L.mapbox.accessToken = "pk.eyJ1IjoiYmVybmFyZG9kaWFzYyIsImEiOiJlZGFiZmUwOTUzZGM5MWIwOTgwMDhmY2ZkMGJlMzQ1OCJ9.tR40g6DTOsTyi101mxSWJg";
     this.map = L.mapbox.map("map", "mapbox.streets");
   }
@@ -22,7 +22,7 @@ export default class Map {
   /**
    * Create a marker with the given image in the exif geolocation
    */
-  static placeMarker(img, lat, lng) {
+  static placeMarker (img, lat, lng) {
     let myLayer = L.mapbox.featureLayer().addTo(this.map);
 
     let geoJson = [{

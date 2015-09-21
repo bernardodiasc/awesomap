@@ -11,7 +11,7 @@ export default class File {
   /**
    * On Input Change
    */
-  static onInputChange(elem) {
+  static onInputChange (elem) {
     if (elem.target.files.length === 0) {
       Alert.showMsg("None file detected. Please try again.");
       return false;
@@ -30,7 +30,7 @@ export default class File {
   /**
    * Get Geo Data
    */
-  static getData(file, callback) {
+  static getData (file, callback) {
     EXIF.getData(file, function() {
       let { GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef } = EXIF.getAllTags(this);
 
@@ -46,7 +46,7 @@ export default class File {
   /**
    * Read image file
    */
-  static readURL(file) {
+  static readURL (file) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     return new Promise(resolve => { reader.onload = resolve; });

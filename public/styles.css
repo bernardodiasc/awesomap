@@ -125,3 +125,11 @@ p {
   border-bottom: 1px solid #ccc;
   padding-bottom: 1em;
 }
+
+/**
+ * Tumblr
+ */
+
+.tumblr {
+  border: 1px solid #ccc;
+}

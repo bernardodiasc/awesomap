@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "jshint app/*.js & watchify app/index.js -do public/bundle.min.js",
     "build": "jshint app/*.js & watchify app/index.js -do 'uglifyjs -cm > public/bundle.min.js'"
   },
   "author": "",
