@@ -6,7 +6,7 @@ export default class DomUtils {
     if (!container) {
       container = document.querySelectorAll("body")[0];
     }
-    console.log(container);
+    //console.log(container);
 
     let element = container.querySelectorAll(tag)[0] || [];
     if (single && element.length > 0) {
@@ -24,11 +24,13 @@ export default class DomUtils {
 
     container.appendChild(element);
 
-    if (content) {
-      element.innerHTML = content;
+    if (tag === "div" || tag === "p") {
+      if (content) {
+        element.innerHTML = content;
+      }
+    } else if (tag === "img") {
+        element.src = content;
     }
-
-    console.log(element);
 
     if (timer) {
       setTimeout(function(){

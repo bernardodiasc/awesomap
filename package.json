@@ -15,6 +15,7 @@
     "browserify": "^11.1.0",
     "eslint": "^1.5.0",
     "exif-js": "^2.1.1",
+    "hyperscript": "^1.4.6",
     "jshint": "^2.8.0",
     "uglifyjs": "^2.4.10",
     "watchify": "^3.4.0"
