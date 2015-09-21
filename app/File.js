@@ -33,7 +33,6 @@ export default class File {
   static getData (file, callback) {
     EXIF.getData(file, function() {
       let { GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef } = EXIF.getAllTags(this);
-
       if (GPSLatitude && GPSLatitudeRef && GPSLongitude && GPSLongitudeRef) {
         let { lat, lng } = GeoUtils.parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
         callback({ lat, lng });
@@ -48,7 +47,7 @@ export default class File {
    */
   static readURL (file) {
     let reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file.src);
     return new Promise(resolve => { reader.onload = resolve; });
   }
 }

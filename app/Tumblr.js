@@ -1,5 +1,7 @@
-import DomUtils from "./DomUtils";
+import EXIF from "exif-js";
 import h from "hyperscript";
+import DomUtils from "./DomUtils";
+import File from "./File";
 
 export default class Tumblr {
 
@@ -39,7 +41,7 @@ export default class Tumblr {
           return h('a', {href: obj[k].post_url},
             h('figure',
               h('picture',
-                h('img', { src: obj[k].photos[0].alt_sizes[3].url })
+                h('img', { src: obj[k].photos[0].alt_sizes[3].url, onclick: Tumblr.imageOnclick })
               ),
               h('figcaption', obj[k].caption)
             )
@@ -49,5 +51,23 @@ export default class Tumblr {
     );
 
     //console.log(data);
+  }
+
+  static imageOnclick(event) {
+    event.preventDefault();
+
+    console.log(event.srcElement.attributes.src.nodeValue);
+    // NOTE:
+    // XMLHttpRequest cannot load http://41.media.tumblr.com/....jpg.
+    // No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    // Origin 'http://localhost' is therefore not allowed access.
+    File.getData(this, geoData => {
+      File.readURL(this)
+        .then(response => {
+          Map.placeMarker(response.target.result, geoData.lat, geoData.lng);
+        });
+    });
+
+    return false;
   }
 }
