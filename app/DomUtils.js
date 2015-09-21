@@ -36,14 +36,4 @@ export default class DomUtils {
       }, timer);
     }
   }
-
-  /*static sanitize (template, ...expressions) {
-    return template.slice(1).reduce((accumulator, part, i) => {
-      return accumulator + insane(expressions[i]) + part
-    }, template[0])
-  }*/
-
-  /*var comment = 'haha xss is so easy <iframe src="http://evil.corp"></iframe>'
-  var html = sanitize`<div>${comment}</div>`
-  console.log(html)*/
 }
