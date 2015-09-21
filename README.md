@@ -38,6 +38,7 @@ Map built with [MapBox](https://www.mapbox.com/).
 - BDD Tests
 - [Tumblr API Docs](https://www.tumblr.com/docs/en/api/v2)
   - [Tumblr Api on NPM](https://www.npmjs.com/package/tumblr)
+- [Hyperscript](https://www.npmjs.com/package/hyperscript)
 
 ### Interface
 
