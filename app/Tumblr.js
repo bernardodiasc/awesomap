@@ -20,22 +20,16 @@ export default class Tumblr {
       single: true
     });
 
+    content.push(DomUtils.createElement({
+      container: document.querySelectorAll(".tumblr")[0],
+      content: "Tumblr feed",
+      tag: "h1"
+    }));
+
     for (let post of data.response.posts) {
-      content.push(Tumblr.postTemplate(post, template => {
+      content.push(DomUtils.postTemplate(post, template => {
         DomUtils.createElement(template);
       }));
     }
-  }
-
-  static postTemplate (post, template) {
-    console.log(post);
-    template({
-      container: document.querySelectorAll(".tumblr")[0],
-      content: post.photos[0].alt_sizes[4].url,
-      tag: "img",
-      classList: "post"
-    });
-
-    return this;
   }
 }

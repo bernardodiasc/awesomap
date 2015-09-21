@@ -1,5 +1,17 @@
 export default class DomUtils {
 
+  static postTemplate (post, template) {
+    //console.log(post);
+    template({
+      container: document.querySelectorAll(".tumblr")[0],
+      content: post.photos[0].alt_sizes[3].url,
+      tag: "img",
+      classList: "post"
+    });
+
+    return this;
+  }
+
   static createElement (options) {
     let { container, content, tag, classList, timer, single } = options;
 
@@ -24,12 +36,12 @@ export default class DomUtils {
 
     container.appendChild(element);
 
-    if (tag === "div" || tag === "p") {
+    if (tag === "div" || tag === "p" || tag === "h1") {
       if (content) {
         element.innerHTML = content;
       }
     } else if (tag === "img") {
-        element.src = content;
+      element.src = content;
     }
 
     if (timer) {
