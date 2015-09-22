@@ -1,5 +1,5 @@
-import DomUtils from './DomUtils';
-
+import h from 'hyperscript';
+import parser from 'html2hscript';
 /**
  * Alert - Handle alert messages
  *
@@ -13,16 +13,23 @@ export default class Alert {
   /**
    * Display alert message
    */
-  static showMsg (msg, type) {
+  static showMsg ({ msg, type, container }) {
     if (!type) {
       console.log(msg);
+      return msg;
     } else {
-      DomUtils.createElement({
-        content: `<div class="message ${type}">${msg}</div>`,
-        tag: 'div',
-        classList: 'alert',
-        timer: 10000
-      });
+      let alert = container.appendChild(
+        parser(msg, function(err, hscript) {
+          console.log(hscript);
+          h('div.Alert.' + type, hscript)
+        })
+      );
+
+      setTimeout(function(){
+        container.removeChild(alertlocallo);
+      }, 10000);
+
+      return alert;
     }
   }
 }

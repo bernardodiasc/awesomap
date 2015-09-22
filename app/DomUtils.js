@@ -1,7 +1,6 @@
 export default class DomUtils {
 
-
-  static createElement (options) {
+  static createFrom (options) {
     let { container, content, tag, classList, timer, single } = options;
 
     if (!container) {

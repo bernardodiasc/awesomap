@@ -38,31 +38,29 @@ a:hover {
  * Alert
  */
 
-.alert {
+.Alert {
   position: absolute;
   text-align: center;
   top: 0;
   width: 100%;
-}
-
-.alert .message {
-  color: white;
+  padding: 0.3em;
   opacity: 0.7;
+  color: white;
 }
 
-.alert .info {
+.Alert.info {
   background: blue;
 }
 
-.alert .success {
+.Alert.success {
   background: green;
 }
 
-.alert .warning {
+.Alert.warning {
   background: darkorange;
 }
 
-.alert .error {
+.Alert.error {
   background: red;
 }
 

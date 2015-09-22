@@ -5,7 +5,7 @@ import File from './File';
 
 export default class Tumblr {
   static fetchPosts () {
-    var BLOG_URL = 'snipmint.tumblr.com';
+    var BLOG_URL = 'devworkspaces.tumblr.com';
     var API_KEY = 'GEVcPQdhe1kIWxnL6yNnSwEmTDogaRKmHE4nkzafwoJStIYwPV';
     var GET_POSTS_URL = 'http://api.tumblr.com/v2/blog/' + BLOG_URL + '/posts?api_key=' + API_KEY + '&jsonp=callback';
 
@@ -43,7 +43,7 @@ export default class Tumblr {
   /*
   Sample output (HTML):
   <div class="tumblr post">
-    <h1><a href="http://snipmint.tumblr.com">Tumblr Feed</a></h1>
+    <h1><a href="http://devworkspaces.tumblr.com">Tumblr Feed</a></h1>
     <a href="#">
       <figure>
         <picture>
@@ -59,7 +59,7 @@ export default class Tumblr {
     return document.querySelectorAll('.panel.right')[0].appendChild(
       h('div.tumblr.posts', [
         h('h1', [
-          h('a', { href: 'http://'+ Tumblr.BLOG_URL }, 'Tumblr Feed')
+          h('a', { href: 'http://'+ Tumblr.BLOG_URL }, 'devworkspaces.com')
         ]),
 
         Object.keys(data).map(function (k) {

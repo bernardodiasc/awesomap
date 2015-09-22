@@ -39,7 +39,13 @@ export default class File {
         let { lat, lng } = GeoUtils.parseDMS(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
         callback({ lat, lng });
       } else {
-        Alert.showMsg(`None EXIF Geo tags found in the file <strong>${file.name}</strong>.<br/>Please check EXIF tags on that image is correct or try another one.`, 'error');
+        let options = {
+          msg: `None EXIF Geo tags found in the file <strong>${file.name}</strong>.<br/>Please check EXIF tags on that image is correct or try another one.`,
+          type: 'error',
+          container: document.querySelectorAll('body')[0]
+        }
+
+        Alert.showMsg(options);
       }
     });
   }
