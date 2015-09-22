@@ -59,16 +59,17 @@ export default class Tumblr {
     //console.log('data.response.postsfilter()', data);
     return document.querySelectorAll('.panel.right')[0].appendChild(
       h('div.tumblr.posts', [
-        h('h1', [
+        h('h2', [
           h('a', { href: 'http://'+ Tumblr.BLOG_URL }, 'devworkspaces.com')
         ]),
 
         Object.keys(data).map(function (k) {
+          var figcaption;
           if (data[k].caption !== '') {
-            var figcaption = document.createElement('figcaption');
+            figcaption = document.createElement('figcaption');
             figcaption.innerHTML = data[k].caption;
           } else {
-            var figcaption = null;
+            figcaption = null;
           }
 
           return (
