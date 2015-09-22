@@ -31,7 +31,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #333;
 }
 
 /**
@@ -89,19 +89,18 @@ a:hover {
 }
 
 .panel.left {
-  width: calc(100% - 300px);
+  width: calc(100% - 500px);
   height: calc(100% - 80px);
   top: 80px;
   left: 0;
 }
 
 .panel.right {
-  width: 300px;
+  width: 500px;
   height: calc(100% - 80px);
   max-height: calc(100% - 80px);
   top: 80px;
   right: 0;
-  padding: 0 25px;
   overflow: auto;
 }
 
@@ -141,26 +140,46 @@ a:hover {
  */
 
 .tumblr {
-  width: 250px;
+  width: 100%;
   padding-top: 1em;
 }
 
-.tumblr a {
-  display: block;
+.tumblr .post {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #dedede;
+  border-left: 1px solid #fff;
+  padding: 2em 0 2em 19px;
 }
 
-.tumblr img {
-  margin-bottom: 0.5em;
+.tumblr .post:hover {
+  background: #fcfcfc;
+  border-left: 1px solid #cfcfcf;
+  border-top: 1px solid #cfcfcf;
+}
+
+.tumblr .post a {
+  max-width: 400px;
+}
+
+.tumblr h1 a {
+  color: #999;
+  margin-bottom: 1em;
+}
+
+.tumblr h1 a:hover {
+  color: #333;
+}
+
+.tumblr a,
+.tumblr h1,
+.tumblr picture {
+  display: inline-block;
 }
 
 .tumblr figure {
   margin: 0;
 }
 
-.tumblr picture {
-  display: block;
-}
-
 .tumblr figcaption {
-  margin-bottom: 1.5em;
+  margin-top: 1em;
 }

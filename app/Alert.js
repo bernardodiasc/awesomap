@@ -1,5 +1,6 @@
 import h from 'hyperscript';
 import parser from 'html2hscript';
+
 /**
  * Alert - Handle alert messages
  *
@@ -20,13 +21,12 @@ export default class Alert {
     } else {
       let alert = container.appendChild(
         parser(msg, function(err, hscript) {
-          console.log(hscript);
-          h('div.Alert.' + type, hscript)
+          h('div.Alert.' + type, hscript);
         })
       );
 
       setTimeout(function(){
-        container.removeChild(alertlocallo);
+        container.removeChild(alert);
       }, 10000);
 
       return alert;

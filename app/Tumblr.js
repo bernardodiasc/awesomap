@@ -1,6 +1,6 @@
 import EXIF from 'exif-js';
 import h from 'hyperscript';
-import DomUtils from './DomUtils';
+import parser from 'html2hscript';
 import File from './File';
 
 export default class Tumblr {
@@ -55,6 +55,7 @@ export default class Tumblr {
   </div>
   */
   static postsTemplate (data) {
+
     //console.log('data.response.postsfilter()', data);
     return document.querySelectorAll('.panel.right')[0].appendChild(
       h('div.tumblr.posts', [
@@ -63,13 +64,22 @@ export default class Tumblr {
         ]),
 
         Object.keys(data).map(function (k) {
+          if (data[k].caption !== '') {
+            var figcaption = document.createElement('figcaption');
+            figcaption.innerHTML = data[k].caption;
+          } else {
+            var figcaption = null;
+          }
+
           return (
-            h('a', { href: data[k].post_url, title: '' }, [
-              h('figure', [
-                h('picture', [
-                  h('img', { src: data[k].photos[0].alt_sizes[3].url, onclick: Tumblr.imageOnclick })
-                ]),
-                h('figcaption', [ data[k].caption ])
+            h('div.post', [
+              h('a', { href: data[k].post_url, title: '' }, [
+                h('figure', [
+                  h('picture', [
+                    h('img', { src: data[k].photos[0].alt_sizes[2].url, onclick: Tumblr.imageOnclick })
+                  ]),
+                  figcaption
+                ])
               ])
             ])
           );
